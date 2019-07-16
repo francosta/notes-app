@@ -1,7 +1,8 @@
 const chalk = require("chalk");
+//Yargs will gove us support to command line arguments
 const yargs = require("yargs");
 const log = console.log;
-const getNotes = require("./notes");
+const notes = require("./notes");
 
 //Customize yargs version
 yargs.version("1.1.0");
@@ -29,7 +30,7 @@ yargs.command({
     }
   },
   handler: argv => {
-    console.log("Title: " + argv.title + " " + "Content: " + argv.body);
+    notes.addNote(argv.title, argv.body);
   }
 });
 
@@ -48,6 +49,22 @@ yargs.command({
   describe: "Reads a note",
   handler: () => {
     console.log("Reading a note...");
+  }
+});
+
+// Create the remove command
+yargs.command({
+  command: "remove",
+  describe: "Removes a note",
+  builder: {
+      title: {
+          describe: "Note title",
+          demandOption: true,
+          type: "string"
+      }
+  }
+  handler: argv => {
+    notes.removeNote(argv.title);
   }
 });
 
