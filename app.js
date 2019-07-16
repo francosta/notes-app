@@ -1,17 +1,44 @@
 const chalk = require("chalk");
+const yargs = require("yargs");
 const log = console.log;
-// Node does not support ES6 at the moment - This wouldn't work: import validator from "validator";
 const getNotes = require("./notes");
 
-// This is the command that the user will input: the first word after the filename in the run command.
-const command = process.argv[2];
+//Customize yargs version
+yargs.version("1.1.0");
 
 // We can access commands from the terminal with process.
 // Process gives us an array. The first and second will be paths. One to the node.js executable in the machine and the second to the file that has been executed.
 // The third is a string from the argument.
 
-if (command === "add") {
-  log("Adding a note!");
-} else if (command === "remove") {
-  log("Removing a note!");
-}
+//Add, remove, read and list notes
+
+//Create add command
+yargs.command({
+  command: "add",
+  describe: "Add a new note",
+  handler: () => {
+    console.log("Adding a new note");
+  }
+});
+
+// Create the list command
+yargs.command({
+    command: "list",
+    describe: "Lists all notes",
+    handler: () => {
+        console.log("Listing all the notes...")
+    }
+})
+
+// Create the read command
+yargs.command({
+    command: "read",
+    describe: "Reads a note",
+    handler: () => {
+        console.log("Reading a note...")
+    }
+})
+
+// Create the read command
+
+log(yargs.argv);
