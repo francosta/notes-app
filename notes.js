@@ -1,4 +1,5 @@
 const fs = require("fs");
+const chalk = require("chalk");
 
 const getNotes = () => {
   return "Your notes...";
@@ -50,12 +51,13 @@ const removeNote = title => {
 
   const noteToRemove = notes.filter(note => note.title === title);
   if (noteToRemove.length === 0) {
-    console.log("There is no note with that title.");
+    console.log(chalk.red.inverse("There is no note with that title."));
   } else {
-    const index = notes.indexOf(noteToRemove[0]);
-    notes.splice(index, 1);
-    savednotes(notes);
-    console.log(`The note with title ${title} has been removed.`);
+    const notesToKeep = notes.filter(note => note.title !== title);
+    savednotes(notesToKeep);
+    console.log(
+      chalk.green.inverse(`The note with title ${title} has been removed.`)
+    );
   }
 };
 
