@@ -1,9 +1,7 @@
 const fs = require("fs");
 const chalk = require("chalk");
 
-const getNotes = () => {
-  return "Your notes...";
-};
+const getNotes = () => "Your notes...";
 
 // This function adds a note and is called by the add command.
 // This function will call on loadNotes().
