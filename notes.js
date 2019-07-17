@@ -10,9 +10,11 @@ const getNotes = () => "Your notes...";
 const addNote = (title, body) => {
   const notes = loadNotes();
 
-  const duplicateNotes = notes.filter(note => note.title === title);
+  // To check if there are any duplicate notes is more efficient to use the find method, instead fo the filter method as the find will stop running as soon as it finds a match.
+  // const duplicateNotes = notes.filter(note => note.title === title);
+  const duplicateNote = notes.find(note => note.title === title);
 
-  if (duplicateNotes.length === 0) {
+  if (!duplicateNote) {
     notes.push({
       title: title,
       body: body
@@ -52,6 +54,19 @@ const listNotes = () => {
   });
 };
 
+// This function will read one note
+
+const readNote = title => {
+  const notes = loadNotes();
+  const note = notes.find(note => note.title === title);
+
+  if (note) {
+    console.log(`Title: ${chalk.green.inverse(note.title)} Body: ${note.body}`);
+  } else {
+    console.log(chalk.red.inverse("No note found."));
+  }
+};
+
 // This function removes a note and is called by the remove command
 const removeNote = title => {
   const notes = loadNotes();
@@ -72,5 +87,6 @@ module.exports = {
   getNotes: getNotes,
   addNote: addNote,
   removeNote: removeNote,
-  listNotes: listNotes
+  listNotes: listNotes,
+  readNote: readNote
 };
