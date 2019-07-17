@@ -4,14 +4,8 @@ const chalk = require("chalk");
 const getNotes = () => "Your notes...";
 
 // This function adds a note and is called by the add command.
-// This function will call on loadNotes().
-// If the new title already exists, it will log so.
-// If not, it will add the new note to the array that is returned and call on savedNotes.
 const addNote = (title, body) => {
   const notes = loadNotes();
-
-  // To check if there are any duplicate notes is more efficient to use the find method, instead fo the filter method as the find will stop running as soon as it finds a match.
-  // const duplicateNotes = notes.filter(note => note.title === title);
   const duplicateNote = notes.find(note => note.title === title);
 
   if (!duplicateNote) {
@@ -55,7 +49,6 @@ const listNotes = () => {
 };
 
 // This function will read one note
-
 const readNote = title => {
   const notes = loadNotes();
   const note = notes.find(note => note.title === title);

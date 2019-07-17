@@ -75,5 +75,4 @@ yargs.command({
   }
 });
 
-// Create the read command
 yargs.parse();
