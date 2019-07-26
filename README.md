@@ -7,7 +7,7 @@ I have built it as my first project using Node.js.
 All javascript code is in accordance to ES6 syntax.
 
 ## Motivation
-This app was built in the context of the 
+This app was built in the context of a Node.js course on Udemy: [The Complete Node.js Course](https://www.udemy.com/the-complete-nodejs-developer-course-2/)
 
 ## Functionality
 
@@ -28,4 +28,3 @@ After cloning the repo, any user can run the following commands in the terminal:
 - `node app.js remove --title=""` to remove a note;
 - `node app.js read --title=""` to read/fetch a specific note;
 - `node app.js list --title="" --body=""` to list all notes.
-
